@@ -1,0 +1,34 @@
+<html>
+<head>
+
+<script>
+	//[1,3,5]  ->  [2,6,10]
+	function duplicarValoresDeListaV1(lista){
+		var listaFinal = [];
+		for(var indice = 0; indice < lista.length ; indice++){
+			var valDuplicado = lista[indice] * 2;
+			listaFinal.push(valDuplicado);
+		}
+		return listaFinal;
+	}
+	
+	function duplicarValoresDeLista(lista){
+		if(lista.length == 1){
+			return [lista[0] * 2];
+		}
+		return [lista[0] * 2].concat(duplicarValoresDeLista(lista.slice(1)));  
+	}
+	
+	var resultado1 = duplicarValoresDeListaV1([1,3,5]);
+	var resultado2 = duplicarValoresDeLista([1,3,5]);
+	console.log(resultado1);
+	console.log(resultado2);
+</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

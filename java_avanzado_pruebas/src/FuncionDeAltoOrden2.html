@@ -1,0 +1,39 @@
+<html>
+<head>
+
+<script>
+ 	function duplicarNumero(numero){
+		return numero * 2;
+	}
+	function triplicarNumero(numero){
+		return numero * 3;
+	}
+	function cuadruplicarNumero(numero){
+		return numero * 4;
+	}
+	function mapearValoresDeLista(lista, accion){
+		if(lista.length == 1){
+			return [accion(lista[0])];
+		}else{
+			return [accion(lista[0])].concat(mapearValoresDeLista(lista.slice(1), accion));
+		}
+	}
+	var miLista = [1,2,3,4];
+	console.log(miLista);
+	console.log(mapearValoresDeLista(miLista, duplicarNumero));
+	console.log(mapearValoresDeLista(miLista, triplicarNumero));
+	console.log(mapearValoresDeLista(miLista, function(numero){
+		return numero * 4;
+	}));
+	
+	console.log(mapearValoresDeLista(miLista, numero => numero * 6));
+
+</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+
+<script>
+
+	function sumarYRetornaCadena(x , y ){
+		return ((x + y) + "");
+	}
+	
+	
+	var suma = 0;
+	function sumarYRetornaCadenaImpura(x , y ){
+		suma += x + y;
+		return (suma + "");
+	}
+	
+	var resultado1 = sumarYRetornaCadena(3, 7);
+	var resultado2 = sumarYRetornaCadena(3, 7);
+	var resultado3 = sumarYRetornaCadenaImpura(3, 7);
+	var resultado4 = sumarYRetornaCadenaImpura(3, 7);
+	console.log(resultado1);
+	console.log(resultado2);
+	console.log(resultado3);
+	console.log(resultado4);
+</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
