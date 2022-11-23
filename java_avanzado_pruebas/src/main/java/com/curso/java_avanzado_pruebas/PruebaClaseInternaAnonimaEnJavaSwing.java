@@ -26,6 +26,7 @@ public class PruebaClaseInternaAnonimaEnJavaSwing {
 		mensajeFrame.add(textoDeSalida);
 		mensajeFrame.setSize(300, 200);
 		mensajeFrame.setVisible(true);
+		
 		/*
 		class AccionBotonMostrar implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
@@ -37,11 +38,12 @@ public class PruebaClaseInternaAnonimaEnJavaSwing {
 		*/
 		
 		//Stream.of("a").map(cadena -> new Boolean("")).map(boleano -> new Integer("3")); 
-		mostrarBtn.addActionListener(new ActionListener() {
+		ActionListener actionListner = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textoDeSalida.setText("Hola Mundo");
 			}
-		});
+		};
+		mostrarBtn.addActionListener(actionListner);
 		 
 		mostrarBtn.addActionListener (
 				e ->  textoDeSalida.setText("Hola Mundo")
