@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+  r2dbc:
+    password: postgres
+    url: r2dbc:postgresql://localhost:5432/products
+    username: postgres
+    pool:
+      max-size: 10
+      max-create-connection-time: 10s

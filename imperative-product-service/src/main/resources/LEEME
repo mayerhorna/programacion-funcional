@@ -1,0 +1,2 @@
+1. Crear una base de datos en postgresql llamada products.
+2. Restaurar products.backup si tienes postgres v14 o ejecutar el script products.sql si tienes una versión anterior.
