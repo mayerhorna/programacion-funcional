@@ -1,12 +1,7 @@
 package com.curso.java_avanzado_pruebas.stream;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.function.BinaryOperator;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamIntermediateOpeartionsTest {
@@ -42,10 +37,42 @@ public class StreamIntermediateOpeartionsTest {
 		//STREAM
 		System.out.println("imprime longitudes de las candenas del flujo:");
 		Stream<String> stream4 = Stream.of("monkey", "gorilla", "bonobo");
-		stream4.map( cadena -> cadena.length() )
+		stream4
+			.map( cadena -> cadena.length() )
 			.map( entero -> "*"+entero+"*")
+			.filter(string -> string.contains("6"))
 		   .forEach(System.out::println);  
-
+		
+		
+		
+		//flatMap
+		List<String> zero = List.of();
+		var one = List.of("Bonobo");
+		var two = List.of("Mama Gorilla", "Baby Gorilla");
+		Stream<List<String>> animals = Stream.of(zero, one, two);
+		//animals.map(lista -> lista.remove(0)  )
+		animals.flatMap(m -> m.stream())
+			.filter(str -> str.startsWith("M"))
+			.forEach(System.out::println);
+		
+		//SORTED:
+		Stream<String> s15 = Stream.of("brown-", "bear-");
+		s15.sorted()
+		   .forEach(System.out::println); // bear-brown-
+		
+		Stream<String> s16 = Stream.of("brown bear-", "grizzly-");
+		s16.sorted(Comparator.reverseOrder())
+		   .forEach(System.out::println); // grizzly-brown bear
+		
+		//PEEK
+		var stream = Stream.of("black bear", "brown bear", "grizzly");
+		long count = stream
+						.peek(str -> System.out.println("before: " + str))
+						.filter(str -> str.startsWith("g"))
+						.peek(str -> System.out.println("after: " + str))
+						.count();              
+		System.out.println(count);                          
+		
 	}
 }
 
