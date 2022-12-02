@@ -1,3 +1,0 @@
-Como instalar LOMBOK en STS
-
-https://projectlombok.org/setup/eclipse
