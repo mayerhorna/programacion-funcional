@@ -21,13 +21,16 @@ class SearchesTest {
     
     @Test
     void findRolesByUserName_Maria_SALESandPURCHASE() {
-        assertEquals(List.of("SALES","PURCHASE"), new Searches().findRolesByUserName("aMaria")
+        assertEquals(List.of("SALES","PURCHASE"), new Searches().findRolesByUserName("Maria")
                 .collect(Collectors.toList()));
     }
     
     @Test
-    void findAllRolesOfAllPresentUsers_3_SALES() {
-    	assertEquals(List.of("ADMIN","SALES","PURCHASE","WAREHOUSE"), new Searches().findAllRolesOfAllPresentUsers().collect(Collectors.toList()));
+    void findAllRolesOfAllPresentUsers_0_ALL() {
+    	assertEquals(List.of("ADMIN","SALES","PURCHASE","WAREHOUSE"), 
+    			new Searches()
+    				.findAllRolesOfAllPresentUsers()
+    				.collect(Collectors.toList()));
     }
  
     @Test

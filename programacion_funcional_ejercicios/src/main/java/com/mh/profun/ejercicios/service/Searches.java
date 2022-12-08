@@ -26,12 +26,10 @@ public class Searches {
 	 * */
     public Stream<String> findRolesByUserName(String userName) {
         return new UsersDatabase().findAll()
-                .peek(x -> LogManager.getLogger(this.getClass()).info("before: " + x))
                 .filter(user -> userName.equals(user.getName()))
-                .peek(x -> LogManager.getLogger(this.getClass()).info("after: " + x))
                 .flatMap(user -> { 
                 	return user.getRoles().stream();
-                	})
+                })
                 .map(Role::getName);
     }
     
@@ -39,36 +37,62 @@ public class Searches {
    	 * Obtiene todos los roles de todos los usuarios presentes(activos). Sin repetir resultado(distinct) 
    	 * */
     public Stream<String> findAllRolesOfAllPresentUsers() {
-    	return Stream.empty();
+    	 return new UsersDatabase().findAll()
+                 .flatMap(user -> { 
+                 	return user.getRoles().stream();
+                 })
+                 .map(Role::getName)
+                 .distinct();
     }
 
     /**
 	 * Obtiene cantidad de usuarios por un rol
 	 * */
     public Long findUsersCountByRole(String roleNameToLook) {
-        return 0L;
+    	return new UsersDatabase().findAll()
+                .flatMap(user -> { 
+                	return user.getRoles().stream();
+                })
+                .filter(role -> role.getName().equalsIgnoreCase(roleNameToLook))
+                .count();
     }
 
     /**
    	 * Obtiene el primer rol por id de usuario
    	 * */
     public Optional<Role> findFirstRoleByUserId(String userId) {
-        return Optional.empty();
+    	return new UsersDatabase().findAll()
+    			.filter(usuario -> usuario.getId().equalsIgnoreCase(userId))
+                .flatMap(user -> { 
+                	return user.getRoles().stream();
+                })
+                .findFirst();
     }
 
     /**
    	 * Obtiene el rol mas bajo en peso por Nombre de usuario
    	 * */
     public Optional<Role> findLowestRoleByUserId(String userId) {
-    	return Optional.empty();
+    	return new UsersDatabase().findAll()
+    			.filter(usuario -> usuario.getId().equalsIgnoreCase(userId))
+                .flatMap(user -> { 
+                	return user.getRoles().stream();
+                })
+                .sorted( (role1, role2) -> role1.getWeight().compareTo(role2.getWeight()))
+                .findFirst();
     }
 
     /**
    	 * Obtiene el rol mas alto en peso por id de usuario
    	 * */
     public Optional<Role> findHighestRoleByUserId(String userId) {
-    	return Optional.empty();
+    	return new UsersDatabase().findAll()
+    			.filter(usuario -> usuario.getId().equalsIgnoreCase(userId))
+                .flatMap(user -> { 
+                	return user.getRoles().stream();
+                })
+                .sorted( (role1, role2) -> role2.getWeight().compareTo(role1.getWeight()))
+                .findFirst();
     }
-
     
 }
