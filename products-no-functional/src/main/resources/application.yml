@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  datasource:
+    hikari:
+      connection-timeout: 10000
+      maximum-pool-size: 10
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/products
+    username: postgres
+  jpa:
+    show-sql: true
+    mapping-resources:
+    - com/mh/erp/products/infrastructure/postgredb/daos/ProductRepository.xml
